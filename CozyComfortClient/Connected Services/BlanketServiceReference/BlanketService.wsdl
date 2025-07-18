@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="AddBlanket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="model" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="material" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="productionCapacity" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddBlanketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddBlanketResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateBlanket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="blanketId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="model" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="material" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="productionCapacity" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateBlanketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateBlanketResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteBlanket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="blanketId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteBlanketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteBlanketResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBlanket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="blanketId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBlanketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBlanketResult" type="tns:Blanket" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Blanket">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BlanketID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Model" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Material" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProductionCapacity" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBlanketsByManufacturer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="manufacturerId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBlanketsByManufacturerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBlanketsByManufacturerResult" type="tns:ArrayOfBlanket" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBlanket">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Blanket" nillable="true" type="tns:Blanket" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBlanketModelName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="blanketId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBlanketModelNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBlanketModelNameResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllBlankets">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllBlanketsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllBlanketsResult" type="tns:ArrayOfBlanket" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddBlanketSoapIn">
+    <wsdl:part name="parameters" element="tns:AddBlanket" />
+  </wsdl:message>
+  <wsdl:message name="AddBlanketSoapOut">
+    <wsdl:part name="parameters" element="tns:AddBlanketResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBlanketSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateBlanket" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBlanketSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateBlanketResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBlanketSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteBlanket" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBlanketSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteBlanketResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBlanketSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBlanket" />
+  </wsdl:message>
+  <wsdl:message name="GetBlanketSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBlanketResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBlanketsByManufacturerSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBlanketsByManufacturer" />
+  </wsdl:message>
+  <wsdl:message name="GetBlanketsByManufacturerSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBlanketsByManufacturerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBlanketModelNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBlanketModelName" />
+  </wsdl:message>
+  <wsdl:message name="GetBlanketModelNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBlanketModelNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBlanketsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllBlankets" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBlanketsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllBlanketsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="BlanketServiceSoap">
+    <wsdl:operation name="AddBlanket">
+      <wsdl:input message="tns:AddBlanketSoapIn" />
+      <wsdl:output message="tns:AddBlanketSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBlanket">
+      <wsdl:input message="tns:UpdateBlanketSoapIn" />
+      <wsdl:output message="tns:UpdateBlanketSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBlanket">
+      <wsdl:input message="tns:DeleteBlanketSoapIn" />
+      <wsdl:output message="tns:DeleteBlanketSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBlanket">
+      <wsdl:input message="tns:GetBlanketSoapIn" />
+      <wsdl:output message="tns:GetBlanketSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBlanketsByManufacturer">
+      <wsdl:input message="tns:GetBlanketsByManufacturerSoapIn" />
+      <wsdl:output message="tns:GetBlanketsByManufacturerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBlanketModelName">
+      <wsdl:input message="tns:GetBlanketModelNameSoapIn" />
+      <wsdl:output message="tns:GetBlanketModelNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBlankets">
+      <wsdl:input message="tns:GetAllBlanketsSoapIn" />
+      <wsdl:output message="tns:GetAllBlanketsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BlanketServiceSoap" type="tns:BlanketServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddBlanket">
+      <soap:operation soapAction="http://tempuri.org/AddBlanket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBlanket">
+      <soap:operation soapAction="http://tempuri.org/UpdateBlanket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBlanket">
+      <soap:operation soapAction="http://tempuri.org/DeleteBlanket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBlanket">
+      <soap:operation soapAction="http://tempuri.org/GetBlanket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBlanketsByManufacturer">
+      <soap:operation soapAction="http://tempuri.org/GetBlanketsByManufacturer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBlanketModelName">
+      <soap:operation soapAction="http://tempuri.org/GetBlanketModelName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBlankets">
+      <soap:operation soapAction="http://tempuri.org/GetAllBlankets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BlanketServiceSoap12" type="tns:BlanketServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddBlanket">
+      <soap12:operation soapAction="http://tempuri.org/AddBlanket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBlanket">
+      <soap12:operation soapAction="http://tempuri.org/UpdateBlanket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBlanket">
+      <soap12:operation soapAction="http://tempuri.org/DeleteBlanket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBlanket">
+      <soap12:operation soapAction="http://tempuri.org/GetBlanket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBlanketsByManufacturer">
+      <soap12:operation soapAction="http://tempuri.org/GetBlanketsByManufacturer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBlanketModelName">
+      <soap12:operation soapAction="http://tempuri.org/GetBlanketModelName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBlankets">
+      <soap12:operation soapAction="http://tempuri.org/GetAllBlankets" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BlanketService">
+    <wsdl:port name="BlanketServiceSoap" binding="tns:BlanketServiceSoap">
+      <soap:address location="https://localhost:44308/Services/BlanketService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BlanketServiceSoap12" binding="tns:BlanketServiceSoap12">
+      <soap12:address location="https://localhost:44308/Services/BlanketService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

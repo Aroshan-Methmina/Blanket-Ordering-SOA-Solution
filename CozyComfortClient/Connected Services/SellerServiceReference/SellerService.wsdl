@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="RegisterSeller">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="seller" type="tns:Seller" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Seller">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SellerId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="StoreName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StoreLocation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Website" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RegisterSellerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegisterSellerResult" type="tns:SellerOperationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SellerOperationResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SellerId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSellerIdByAppUserId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="appUserId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSellerIdByAppUserIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetSellerIdByAppUserIdResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateSellerProfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="seller" type="tns:Seller" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateSellerProfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateSellerProfileResult" type="tns:SellerOperationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSellerDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sellerId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSellerDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSellerDetailsResult" type="tns:Seller" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllSellers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllSellersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllSellersResult" type="tns:ArrayOfSeller" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSeller">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Seller" nillable="true" type="tns:Seller" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DeleteSeller">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sellerId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteSellerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteSellerResult" type="tns:SellerOperationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RegisterSellerSoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterSeller" />
+  </wsdl:message>
+  <wsdl:message name="RegisterSellerSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterSellerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSellerIdByAppUserIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSellerIdByAppUserId" />
+  </wsdl:message>
+  <wsdl:message name="GetSellerIdByAppUserIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSellerIdByAppUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSellerProfileSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateSellerProfile" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSellerProfileSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateSellerProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSellerDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSellerDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetSellerDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSellerDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSellersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllSellers" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSellersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllSellersResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSellerSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteSeller" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSellerSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteSellerResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SellerServiceSoap">
+    <wsdl:operation name="RegisterSeller">
+      <wsdl:input message="tns:RegisterSellerSoapIn" />
+      <wsdl:output message="tns:RegisterSellerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSellerIdByAppUserId">
+      <wsdl:input message="tns:GetSellerIdByAppUserIdSoapIn" />
+      <wsdl:output message="tns:GetSellerIdByAppUserIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSellerProfile">
+      <wsdl:input message="tns:UpdateSellerProfileSoapIn" />
+      <wsdl:output message="tns:UpdateSellerProfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSellerDetails">
+      <wsdl:input message="tns:GetSellerDetailsSoapIn" />
+      <wsdl:output message="tns:GetSellerDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSellers">
+      <wsdl:input message="tns:GetAllSellersSoapIn" />
+      <wsdl:output message="tns:GetAllSellersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSeller">
+      <wsdl:input message="tns:DeleteSellerSoapIn" />
+      <wsdl:output message="tns:DeleteSellerSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SellerServiceSoap" type="tns:SellerServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterSeller">
+      <soap:operation soapAction="http://tempuri.org/RegisterSeller" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSellerIdByAppUserId">
+      <soap:operation soapAction="http://tempuri.org/GetSellerIdByAppUserId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSellerProfile">
+      <soap:operation soapAction="http://tempuri.org/UpdateSellerProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSellerDetails">
+      <soap:operation soapAction="http://tempuri.org/GetSellerDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSellers">
+      <soap:operation soapAction="http://tempuri.org/GetAllSellers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSeller">
+      <soap:operation soapAction="http://tempuri.org/DeleteSeller" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SellerServiceSoap12" type="tns:SellerServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterSeller">
+      <soap12:operation soapAction="http://tempuri.org/RegisterSeller" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSellerIdByAppUserId">
+      <soap12:operation soapAction="http://tempuri.org/GetSellerIdByAppUserId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSellerProfile">
+      <soap12:operation soapAction="http://tempuri.org/UpdateSellerProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSellerDetails">
+      <soap12:operation soapAction="http://tempuri.org/GetSellerDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSellers">
+      <soap12:operation soapAction="http://tempuri.org/GetAllSellers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSeller">
+      <soap12:operation soapAction="http://tempuri.org/DeleteSeller" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SellerService">
+    <wsdl:port name="SellerServiceSoap" binding="tns:SellerServiceSoap">
+      <soap:address location="https://localhost:44308/Services/SellerService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SellerServiceSoap12" binding="tns:SellerServiceSoap12">
+      <soap12:address location="https://localhost:44308/Services/SellerService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

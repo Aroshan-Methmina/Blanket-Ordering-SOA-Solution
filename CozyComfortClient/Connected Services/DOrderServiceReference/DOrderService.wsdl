@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="PlaceDistributorOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="distributorId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="manufacturerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="blanketId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="quantity" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PlaceDistributorOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PlaceDistributorOrderResult" type="tns:OrderOperationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OrderOperationResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateDistributorOrderStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="orderId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="newStatus" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDistributorOrderStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateDistributorOrderStatusResult" type="tns:OrderOperationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelDistributorOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="orderId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelDistributorOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CancelDistributorOrderResult" type="tns:OrderOperationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDistributorOrderDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="orderId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDistributorOrderDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDistributorOrderDetailsResult" type="tns:DOrderDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DOrderDetails">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OrderId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DistributorId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DistributorName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ManufacturerId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ManufacturerName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BlanketId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BlanketModel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BlanketMaterial" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDistributorOrdersByManufacturer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="manufacturerId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="statusFilter" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDistributorOrdersByManufacturerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDistributorOrdersByManufacturerResult" type="tns:ArrayOfDOrderDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDOrderDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DOrderDetails" nillable="true" type="tns:DOrderDetails" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDistributorOrdersByDistributor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="distributorId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="statusFilter" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDistributorOrdersByDistributorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDistributorOrdersByDistributorResult" type="tns:ArrayOfDOrderDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetManufacturersForBlanket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="blanketId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetManufacturersForBlanketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetManufacturersForBlanketResult" type="tns:ArrayOfManufacturerBlanket" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfManufacturerBlanket">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ManufacturerBlanket" nillable="true" type="tns:ManufacturerBlanket" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ManufacturerBlanket">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ManufacturerId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ManufacturerName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AvailableQuantity" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="PlaceDistributorOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:PlaceDistributorOrder" />
+  </wsdl:message>
+  <wsdl:message name="PlaceDistributorOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:PlaceDistributorOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDistributorOrderStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDistributorOrderStatus" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDistributorOrderStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDistributorOrderStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelDistributorOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelDistributorOrder" />
+  </wsdl:message>
+  <wsdl:message name="CancelDistributorOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelDistributorOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDistributorOrderDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDistributorOrderDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetDistributorOrderDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDistributorOrderDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDistributorOrdersByManufacturerSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDistributorOrdersByManufacturer" />
+  </wsdl:message>
+  <wsdl:message name="GetDistributorOrdersByManufacturerSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDistributorOrdersByManufacturerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDistributorOrdersByDistributorSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDistributorOrdersByDistributor" />
+  </wsdl:message>
+  <wsdl:message name="GetDistributorOrdersByDistributorSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDistributorOrdersByDistributorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetManufacturersForBlanketSoapIn">
+    <wsdl:part name="parameters" element="tns:GetManufacturersForBlanket" />
+  </wsdl:message>
+  <wsdl:message name="GetManufacturersForBlanketSoapOut">
+    <wsdl:part name="parameters" element="tns:GetManufacturersForBlanketResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DOrderServiceSoap">
+    <wsdl:operation name="PlaceDistributorOrder">
+      <wsdl:input message="tns:PlaceDistributorOrderSoapIn" />
+      <wsdl:output message="tns:PlaceDistributorOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDistributorOrderStatus">
+      <wsdl:input message="tns:UpdateDistributorOrderStatusSoapIn" />
+      <wsdl:output message="tns:UpdateDistributorOrderStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelDistributorOrder">
+      <wsdl:input message="tns:CancelDistributorOrderSoapIn" />
+      <wsdl:output message="tns:CancelDistributorOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDistributorOrderDetails">
+      <wsdl:input message="tns:GetDistributorOrderDetailsSoapIn" />
+      <wsdl:output message="tns:GetDistributorOrderDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDistributorOrdersByManufacturer">
+      <wsdl:input message="tns:GetDistributorOrdersByManufacturerSoapIn" />
+      <wsdl:output message="tns:GetDistributorOrdersByManufacturerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDistributorOrdersByDistributor">
+      <wsdl:input message="tns:GetDistributorOrdersByDistributorSoapIn" />
+      <wsdl:output message="tns:GetDistributorOrdersByDistributorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetManufacturersForBlanket">
+      <wsdl:input message="tns:GetManufacturersForBlanketSoapIn" />
+      <wsdl:output message="tns:GetManufacturersForBlanketSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DOrderServiceSoap" type="tns:DOrderServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PlaceDistributorOrder">
+      <soap:operation soapAction="http://tempuri.org/PlaceDistributorOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDistributorOrderStatus">
+      <soap:operation soapAction="http://tempuri.org/UpdateDistributorOrderStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelDistributorOrder">
+      <soap:operation soapAction="http://tempuri.org/CancelDistributorOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistributorOrderDetails">
+      <soap:operation soapAction="http://tempuri.org/GetDistributorOrderDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistributorOrdersByManufacturer">
+      <soap:operation soapAction="http://tempuri.org/GetDistributorOrdersByManufacturer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistributorOrdersByDistributor">
+      <soap:operation soapAction="http://tempuri.org/GetDistributorOrdersByDistributor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetManufacturersForBlanket">
+      <soap:operation soapAction="http://tempuri.org/GetManufacturersForBlanket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DOrderServiceSoap12" type="tns:DOrderServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PlaceDistributorOrder">
+      <soap12:operation soapAction="http://tempuri.org/PlaceDistributorOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDistributorOrderStatus">
+      <soap12:operation soapAction="http://tempuri.org/UpdateDistributorOrderStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelDistributorOrder">
+      <soap12:operation soapAction="http://tempuri.org/CancelDistributorOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistributorOrderDetails">
+      <soap12:operation soapAction="http://tempuri.org/GetDistributorOrderDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistributorOrdersByManufacturer">
+      <soap12:operation soapAction="http://tempuri.org/GetDistributorOrdersByManufacturer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistributorOrdersByDistributor">
+      <soap12:operation soapAction="http://tempuri.org/GetDistributorOrdersByDistributor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetManufacturersForBlanket">
+      <soap12:operation soapAction="http://tempuri.org/GetManufacturersForBlanket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DOrderService">
+    <wsdl:port name="DOrderServiceSoap" binding="tns:DOrderServiceSoap">
+      <soap:address location="https://localhost:44308/Services/DOrderService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DOrderServiceSoap12" binding="tns:DOrderServiceSoap12">
+      <soap12:address location="https://localhost:44308/Services/DOrderService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="AddSInventory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inv" type="tns:SInventory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SInventory">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SInventoryID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SellerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SBlanketID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SQuantity" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SLastUpdated" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Model" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Material" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddSInventoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddSInventoryResult" type="tns:InventoryOperationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InventoryOperationResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InventoryId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateSInventory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inv" type="tns:SInventory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateSInventoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateSInventoryResult" type="tns:InventoryOperationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteSInventory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sInventoryId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteSInventoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteSInventoryResult" type="tns:InventoryOperationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSInventoriesBySeller">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sellerId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSInventoriesBySellerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSInventoriesBySellerResult" type="tns:ArrayOfSInventory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSInventory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SInventory" nillable="true" type="tns:SInventory" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSInventoryById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="inventoryId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSInventoryByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSInventoryByIdResult" type="tns:SInventory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddSInventorySoapIn">
+    <wsdl:part name="parameters" element="tns:AddSInventory" />
+  </wsdl:message>
+  <wsdl:message name="AddSInventorySoapOut">
+    <wsdl:part name="parameters" element="tns:AddSInventoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSInventorySoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateSInventory" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSInventorySoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateSInventoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSInventorySoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteSInventory" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSInventorySoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteSInventoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSInventoriesBySellerSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSInventoriesBySeller" />
+  </wsdl:message>
+  <wsdl:message name="GetSInventoriesBySellerSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSInventoriesBySellerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSInventoryByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSInventoryById" />
+  </wsdl:message>
+  <wsdl:message name="GetSInventoryByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSInventoryByIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SInventoryServiceSoap">
+    <wsdl:operation name="AddSInventory">
+      <wsdl:input message="tns:AddSInventorySoapIn" />
+      <wsdl:output message="tns:AddSInventorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSInventory">
+      <wsdl:input message="tns:UpdateSInventorySoapIn" />
+      <wsdl:output message="tns:UpdateSInventorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSInventory">
+      <wsdl:input message="tns:DeleteSInventorySoapIn" />
+      <wsdl:output message="tns:DeleteSInventorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSInventoriesBySeller">
+      <wsdl:input message="tns:GetSInventoriesBySellerSoapIn" />
+      <wsdl:output message="tns:GetSInventoriesBySellerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSInventoryById">
+      <wsdl:input message="tns:GetSInventoryByIdSoapIn" />
+      <wsdl:output message="tns:GetSInventoryByIdSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SInventoryServiceSoap" type="tns:SInventoryServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddSInventory">
+      <soap:operation soapAction="http://tempuri.org/AddSInventory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSInventory">
+      <soap:operation soapAction="http://tempuri.org/UpdateSInventory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSInventory">
+      <soap:operation soapAction="http://tempuri.org/DeleteSInventory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSInventoriesBySeller">
+      <soap:operation soapAction="http://tempuri.org/GetSInventoriesBySeller" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSInventoryById">
+      <soap:operation soapAction="http://tempuri.org/GetSInventoryById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SInventoryServiceSoap12" type="tns:SInventoryServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddSInventory">
+      <soap12:operation soapAction="http://tempuri.org/AddSInventory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSInventory">
+      <soap12:operation soapAction="http://tempuri.org/UpdateSInventory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSInventory">
+      <soap12:operation soapAction="http://tempuri.org/DeleteSInventory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSInventoriesBySeller">
+      <soap12:operation soapAction="http://tempuri.org/GetSInventoriesBySeller" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSInventoryById">
+      <soap12:operation soapAction="http://tempuri.org/GetSInventoryById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SInventoryService">
+    <wsdl:port name="SInventoryServiceSoap" binding="tns:SInventoryServiceSoap">
+      <soap:address location="https://localhost:44308/Services/SInventoryService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SInventoryServiceSoap12" binding="tns:SInventoryServiceSoap12">
+      <soap12:address location="https://localhost:44308/Services/SInventoryService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
